@@ -1,0 +1,27 @@
+package com.kh.common;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class JDBCTemplate {
+	// 1. Connection 객체 생성한 후 생성된 Connection 객체를 반환해주는 getConnection 메소드
+	public static Connection getConnection() {
+		Connection conn = null;
+		try {
+			// jdbc driver 등록
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			// 접속하는 db 정보(url/사용자계정이름/비밀번호)를 통해서 Connection 객체 생성
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe",
+									"C##SERVER",
+									"SERVER");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return conn;	
+	}
+}

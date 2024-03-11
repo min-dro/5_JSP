@@ -1,0 +1,20 @@
+package com.kh.member.model.dao;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
+public class MemberDao {
+	Properties prop = new Properties();
+	
+	// 생성자 부분에 xml 파일을 연결
+	public MemberDao() {
+		String filepath = MemberDao.class.getResource("/db/sql/member-mapper.xml").getPath();
+		
+		try {
+			prop.loadFromXML(new FileInputStream(filepath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
